@@ -1,8 +1,14 @@
 import json
 import re
 
+"""---------------This won't work-------------------""""
+
 with open('smallTwitter.json', 'r', encoding='utf-8') as f:
     tweets = json.load(f) # load it as Python dict
+
+"""---------------This won't work-------------------""""
+
+
 # empty dictionaries for tweet and lang
 tweet_dic = {}
 lang_dic = {}
