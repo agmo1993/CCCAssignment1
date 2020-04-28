@@ -14,7 +14,7 @@ Blocking point-to-point communication was used as the method to send and receive
 
 Each condition was programmed using Bash Scripts, according to the appropriate Slurm commands. 
 
-## Condition 1 - One node one core
+### Condition 1 - One node one core
 
 The filename for this script is myjob1.slurm
 
@@ -29,3 +29,34 @@ module load Python/3.4.3-goolf-2015a
 time srun -n 1 python tweetParser_v2.py
 ```
 
+### Condition 2 - One node eight cores
+
+The filename for this script is myjob2.slurm
+
+```sh
+#!/bin/bash 
+#SBATCH --partition=cloud 
+#SBATCH --time=00:20:00 
+#SBATCH --nodes=1 
+#SBATCH --ntasks=8
+module load Python/3.4.3-goolf-2015a 
+#module load Java/1.8.0_71 
+#module load mpj/0.44 
+time srun -n 8 python tweetParser_v2.py
+```
+
+### Condition 3 - Two nodes eight cores
+
+The filename for this script is myjob3.slurm
+
+```sh
+#!/bin/bash 
+#SBATCH --partition=cloud 
+#SBATCH --time=00:20:00 
+#SBATCH --nodes=2
+#SBATCH --ntasks-per-node=4
+module load Python/3.4.3-goolf-2015a 
+#module load Java/1.8.0_71 
+#module load mpj/0.44 
+time srun -n 8 python tweetParser_v2.py
+```
