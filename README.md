@@ -9,3 +9,23 @@ The Architecture developed is a multiple instruction, single data stream (MISD) 
 The second unit parses the data and uses a regular expression to extract tweets from the line of data. It then sends the extracted tweets to the fourth unit. The third unit extracts the language of the tweet and sends it to the fourth unit. The fourth unit is an output data storage, with hashmaps (Python dictionaries) used to store tweets and count the number of times they appeared as well as the languages used for the tweets. It then sorts the hashmaps and outputs the top 10 most frequent tweets and languages used respectively.  
  
 Blocking point-to-point communication was used as the method to send and receive data between the units. Therefore, the sending process blocks until the receiving process has correctly received the correct information
+
+# Invocation
+
+Each condition was programmed using Bash Scripts, according to the appropriate Slurm commands. 
+
+## Condition 1 - One node one core
+
+The filename for this script is myjob1.slurm
+
+```sh
+#!/bin/bash #SBATCH --partition=cloud 
+#SBATCH --time=00:20:00 
+#SBATCH --nodes=1 
+#SBATCH --ntasks=1 
+module load Python/3.4.3-goolf-2015a 
+#module load Java/1.8.0_71 
+#module load mpj/0.44 
+time srun -n 1 python tweetParser_v2.py
+```
+
